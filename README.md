@@ -46,12 +46,12 @@ std::string fragStr = R"(
         0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f
     //        ↑                    ↑
     //       aPos                aColor
-    //
-    };
-
-    layout (location = 0) in vec3 aPos;
-                       ↑
-                       |
+    //        |
+    };        + --------------------------------------------------------+
+                                                                        |
+    layout (location = 0) in vec3 aPos;                                 |
+                       ↑                                                |
+                       |                                                |
                        |                                                + -> aPos offset
                        ↓                                                ↓
  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)0);
