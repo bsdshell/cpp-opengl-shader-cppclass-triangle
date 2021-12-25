@@ -41,13 +41,17 @@ std::string fragStr = R"(
 
 ``` cpp
     layout (location = 0) in vec3 aPos;
+                       ↑
                        |
                        |
+                       ↓
  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)0);
 
     layout (location = 1) in vec3 aColor;
+                       ↑
                        |
                        |
+                       ↓
  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)(3*sizeof(float)));
 ```
 
