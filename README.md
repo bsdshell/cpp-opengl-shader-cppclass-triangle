@@ -1,4 +1,4 @@
-### Shader class inside cpp class
+### Wrap shader code inside class
 
 ### Vertex Shader and Fragment Shader
 ``` cpp
@@ -67,4 +67,5 @@ Pass new matrix to *shader*
     glUseProgram(shaderHandle);
     glUniformMatrix4fv(matrixId, 1, GL_FALSE, mat);
 ```
+KKK
 ![Shader Triangles](shader-translation.png)
