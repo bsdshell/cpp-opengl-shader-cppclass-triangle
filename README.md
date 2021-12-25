@@ -45,8 +45,8 @@ std::string fragStr = R"(
         -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,
         0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f
     //        ↑                    ↑
-	//       aPos                aColor
-	//
+    //       aPos                aColor
+    //
     };
 
     layout (location = 0) in vec3 aPos;
