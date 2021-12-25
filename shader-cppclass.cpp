@@ -28,7 +28,7 @@ using namespace std;
 using namespace MatrixVector;
 
 
-void shaderSetMatrix(GLuint shaderHandle, string uniformVarStr, float arr[16]);
+void shaderSetMatrix(GLuint shaderHandle, string uniformVarStr, float mat[16]);
 void shaderSetVec4(GLuint shaderHandle, string uniformVarStr, float vec4[4]);
 
 class Triangle{
@@ -47,8 +47,19 @@ class Triangle{
             }
         }
 
-        void setMatrix(GLuint shaderHandle, string uniformVarStr, float arr[16]){
-            shaderSetMatrix(shaderHandle, uniformVarStr, arr); 
+        /*
+        float mat[] = {
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.5f, 0.0f, 0.0f, 1.0f     <-  translation vector 
+        };
+             
+        setMatrix(shaderHandle, "mymat", mat)
+
+        */
+        void setMatrix(GLuint shaderHandle, string uniformVarStr, float mat[16]){
+            shaderSetMatrix(shaderHandle, uniformVarStr, mat); 
         }
         unsigned int setupVBOVAO(){
             glGenVertexArrays(1, &VAO);
