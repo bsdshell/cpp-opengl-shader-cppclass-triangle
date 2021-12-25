@@ -40,6 +40,14 @@ std::string fragStr = R"(
 ### what are the *layout* and *location* in shader
 
 ``` cpp
+
+    float trixx[] = {
+        0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,
+        0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f
+                           //  R     G     B
+    };
+
     layout (location = 0) in vec3 aPos;
                        ↑
                        |
