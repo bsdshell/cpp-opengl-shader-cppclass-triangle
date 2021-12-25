@@ -5,4 +5,4 @@
     // cpp code
 ```
 
-![Shader Triangles](shader_cppclass.png)
+![Shader Triangles](shader-cppclass.png)
