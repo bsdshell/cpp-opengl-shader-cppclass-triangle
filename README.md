@@ -13,11 +13,11 @@ std::string vertexShaderStr = R"(
         mat4 tmat;
         tmat = mat4(1.2, 0.0, 0.0, 0.0,
                     0.0, 1.2, 0.0, 0.0,
-                    0.0, 0.0, 1.2, 0.0,  
+                    0.0, 0.0, 1.2, 0.0,
                     0.0, 0.0, 0.0, 1.0);
 
         gl_Position = tmat*mymat * vec4(aPos, 1.0);
-        ourColor = aPos; 
+        ourColor = aPos;
 
         // gl_Position = tmat * vec4(aPos, 1.0);
     }
@@ -45,12 +45,12 @@ Pass new matrix to *shader*
 
 ``` cpp
     float mat[] = { 1.0, 0.0, 0.0, 0.0,
-	                0.0, 1.0, 0.0, 0.0,
-					0.0, 0.0, 1.0, 0.0,
-					0.5, 0.0, 0.0, 1.0   <- translation vector
-				};
-					
-	glUseProgram(shaderHandle);
+                    0.0, 1.0, 0.0, 0.0,
+                    0.0, 0.0, 1.0, 0.0,
+                    0.5, 0.0, 0.0, 1.0   <- translation vector
+                };
+
+    glUseProgram(shaderHandle);
     glUniformMatrix4fv(matrixId, 1, GL_FALSE, mat);
 ```
 
