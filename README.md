@@ -47,7 +47,7 @@ Pass new matrix to *shader*
     float mat[] = { 1.0, 0.0, 0.0, 0.0,
                     0.0, 1.0, 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
-                    0.5, 0.0, 0.0, 1.0   <- translation vector
+                    0.2, 0.0, 0.0, 1.0   <- translation vector
                 };
 
     glUseProgram(shaderHandle);
@@ -55,3 +55,16 @@ Pass new matrix to *shader*
 ```
 
 ![Shader Triangles](shader-cppclass.png)
+
+### Translate triangle along x-axis to 0.2
+``` cpp
+    float mat[] = { 1.0, 0.0, 0.0, 0.0,
+                    0.0, 1.0, 0.0, 0.0,
+                    0.0, 0.0, 1.0, 0.0,
+                    0.2, 0.0, 0.0, 1.0   <- translation vector
+                };
+
+    glUseProgram(shaderHandle);
+    glUniformMatrix4fv(matrixId, 1, GL_FALSE, mat);
+```
+![Shader Triangles](shader-translation.png)
