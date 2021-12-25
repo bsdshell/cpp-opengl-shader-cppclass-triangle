@@ -23,6 +23,7 @@ std::string vertexShaderStr = R"(
     }
 )";
 
+
 std::string fragStr = R"(
 #version 330 core
     out vec4 FragColor;
@@ -35,6 +36,9 @@ std::string fragStr = R"(
 )";
 
 ```
+
+### what are the *layout* and *location* in shader
+
 
 ### Access matrix in shader from OpenGL
 Get matrix id from *shader* or How to access the matrix variable from OpenGL
