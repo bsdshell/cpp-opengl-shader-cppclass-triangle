@@ -155,7 +155,8 @@ Compile: opengl_compile.sh
 UPDATE: Sat 18 Dec 23:33:42 2021 
 1. Use raw string in shader string
 2. Add translation matrix to translate the curve
-3. Fixed bug: exit the code if there is shader error
+3. Fixed bug: exit the program if there is shader error
+4. Wrap shader code inside class
 
 */
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -291,7 +292,7 @@ int main(){
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL Shader Triangle", NULL, NULL);
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
