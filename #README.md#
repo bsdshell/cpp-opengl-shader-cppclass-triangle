@@ -44,12 +44,6 @@ Get matrix id from *shader* or How to access the matrix variable from OpenGL
 Pass new matrix to *shader*
 
 ``` cpp
-    float mat[] = { 1.0, 0.0, 0.0, 0.0,
-                    0.0, 1.0, 0.0, 0.0,
-                    0.0, 0.0, 1.0, 0.0,
-                    0.0, 0.0, 0.0, 1.0   <- translation vector
-                };
-
     glUseProgram(shaderHandle);
     glUniformMatrix4fv(matrixId, 1, GL_FALSE, mat);
 ```
