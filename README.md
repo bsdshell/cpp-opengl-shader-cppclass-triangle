@@ -47,7 +47,7 @@ Pass new matrix to *shader*
     float mat[] = { 1.0, 0.0, 0.0, 0.0,
                     0.0, 1.0, 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
-                    0.0, 0.0, 0.0, 1.0   <- translation vector
+                    0.0, 0.0, 0.0, 1.0    // <- translation vector
                 };
 
     glUseProgram(shaderHandle);
@@ -61,7 +61,7 @@ Pass new matrix to *shader*
     float mat[] = { 1.0, 0.0, 0.0, 0.0,
                     0.0, 1.0, 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
-                    0.2, 0.0, 0.0, 1.0   <- translation vector
+                    0.2, 0.0, 0.0, 1.0   // <- translation vector
                 };
 
     glUseProgram(shaderHandle);
