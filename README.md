@@ -39,6 +39,14 @@ std::string fragStr = R"(
 
 ### what are the *layout* and *location* in shader
 
+``` cpp
+    layout (location = 0) in vec3 aPos;
+                       |
+                       |               
+ glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)0);
+				
+    layout (location = 1) in vec3 aColor;
+```
 
 ### Access matrix in shader from OpenGL
 Get matrix id from *shader* or How to access the matrix variable from OpenGL
