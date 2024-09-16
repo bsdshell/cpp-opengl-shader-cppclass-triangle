@@ -21,7 +21,7 @@
 #include <string>
 
 #include "AronLib.h"
-#include "AronCLibNew.h"
+// #include "AronCLibNew.h"
 #include "AronOpenGLLib.h"
 
 using namespace std;
@@ -126,9 +126,20 @@ std::string vertexShaderStr = R"(
     layout (location = 0) in vec3 aPos;
     layout (location = 1) in vec3 aColor;
     uniform mat4 mymat;
+    uniform float u_time;
     out vec3 ourColor;
+
+    // KEY: modify a matrix
+    mat4 modifyMatrix(mat4 matrix, float time){
+        mat4 mat = matrix;
+
+        mat[3][1] = time;
+
+        return mat;
+    }
     void main()
     {
+        float elapsedTime = u_time; 
         mat4 translate1;
         translate1 = mat4(1.0, 0.0, 0.0,  0.0,
                           0.0, 1.0, 0.0,  0.0,
@@ -141,7 +152,11 @@ std::string vertexShaderStr = R"(
                     0.0, 0.0, 1.2, 0.0,  
                     0.0, 0.0, 0.0, 1.0);
 
-        gl_Position = tmat*mymat * vec4(aPos, 1.0);
+        mat4 tr1 = modifyMatrix(mymat, sin(elapsedTime));
+
+        // mymat is from OpenGL
+        // gl_Position = tmat*mymat * vec4(aPos, 1.0);
+        gl_Position = tmat*tr1 * vec4(aPos, 1.0);
         ourColor = aPos; 
 
         // gl_Position = tmat * vec4(aPos, 1.0);
@@ -268,29 +283,36 @@ int main(){
     };
     Triangle* triPt = new Triangle(18, trixx);
 
-    float mymat[4][4];
-    for(int i = 0; i < 4; i++){
-        for(int j =0; j < 4; j++){
-            if (i == j){
-                mymat[i][j] = 1.5f;
-            }
-            else{
-                mymat[i][j] = 0.0f;
-            }
-        }
-    }
-    printArray2df(4, 4, &mymat[0][0]);
-
-    float mat[] = {
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
+    // ERROR: Wrong way to set a matrix
+    // float mymat[4][4];
+    // for(int i = 0; i < 4; i++){
+        // for(int j =0; j < 4; j++){
+            // if (i == j){
+                // mymat[i][j] = 1.5f;
+            // }
+            // else{
+                // mymat[i][j] = 0.0f;
+            // }
+        // }
+    // }
+    // printArray2df(4, 4, &mymat[0][0]);
+    // mymat is column major
+    float mymat[] = {
+        1.0f, 0.0f, 0.0f, 0.0f, // x-axis
+        0.0f, 1.0f, 0.0f, 0.0f, // y-axis
+        0.0f, 0.0f, 1.0f, 0.0f, // z-axis
         0.2f, 0.0f, 0.0f, 1.0f  // <- translation vector
     };
 
     GLuint matrixId = glGetUniformLocation(shaderProgram, "mymat");
     if (matrixId == -1){
         printf("ERROR: matrixId=%d\n", matrixId);
+        exit(1);
+    }
+
+    GLuint u_timeId = glGetUniformLocation(shaderProgram, "u_time");
+    if (u_timeId == -1){
+        printf("ERROR: u_timeId=%d\n", u_timeId);
         exit(1);
     }
 
@@ -313,8 +335,12 @@ int main(){
 
         // update shader uniform
         float timeValue = glfwGetTime();
+        printf("timeValue=%f\n", timeValue);
+        float cycleX = sin(timeValue);
+        mymat[12] = cycleX;
 
-        triPt -> setMatrix(shaderProgram, "mymat", mat);
+        glUniform1f(u_timeId, timeValue); 
+        triPt -> setMatrix(shaderProgram, "mymat", mymat);
         triPt -> draw(GL_TRIANGLE_STRIP);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

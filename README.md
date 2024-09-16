@@ -96,3 +96,5 @@ Pass new matrix to *shader*
     glUniformMatrix4fv(matrixId, 1, GL_FALSE, mat);
 ```
 ![Shader Triangles](shader-translation.png)
+
+### Add run.sh script
